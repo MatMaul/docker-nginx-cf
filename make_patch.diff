@@ -1,0 +1,19 @@
+--- a/Makefile	2019-10-11 13:36:29.660658638 +0200
++++ b/Makefile	2019-10-12 04:02:19.941751226 +0200
+@@ -246,6 +246,8 @@
+ 	--with-http_stub_status_module \
+ 	--with-http_sub_module \
+ 	--with-http_v2_module \
++	--with-http_v2_hpack_enc \
++	--with-http_spdy_module \
+ 	--with-mail \
+ 	--with-mail_ssl_module \
+ 	--with-stream \
+@@ -291,6 +293,7 @@
+ 	set -e ; \
+ 	mkdir -p abuild-base ; \
+ 	cp $(BASE_SRC) abuild-base/ ; \
++	cp /tmp/*.patch abuild-base/ ; \
+ 	cp nginx.* default.conf COPYRIGHT abuild-base/ ; \
+ 	cat nginx.initd.in | sed -e 's#%%DAEMON%%#nginx#g' > abuild-base/nginx.initd ; \
+ 	cat nginx.initd.in | sed -e 's#%%DAEMON%%#nginx-debug#g' > abuild-base/nginx-debug.initd ; \

@@ -46,7 +46,7 @@ RUN set -x \
                 && cd ${tempDir} \
                 && hg clone https://hg.nginx.org/pkg-oss \
                 && cd pkg-oss \
-                && hg up ${NGINX_VERSION}-${PKG_RELEASE} \
+                && hg up 6134d0562ead \
                 && cd alpine \
                 && patch -p 1 -i ${tempDir}/make_patch.diff \
                 && sed -i '/source=/a nginx.patch' APKBUILD-base.in \

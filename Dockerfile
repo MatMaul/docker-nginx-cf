@@ -2,8 +2,8 @@ FROM alpine:3.10
 
 LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 
-ENV NGINX_VERSION 1.17.5
-ENV NJS_VERSION   0.3.6
+ENV NGINX_VERSION 1.17.6
+ENV NJS_VERSION   0.3.7
 ENV PKG_RELEASE   1
 
 COPY . /tmp
@@ -46,7 +46,7 @@ RUN set -x \
                 && cd ${tempDir} \
                 && hg clone https://hg.nginx.org/pkg-oss \
                 && cd pkg-oss \
-                && hg up 6134d0562ead \
+                && hg up ${NGINX_VERSION}-${PKG_RELEASE} \
                 && cd alpine \
                 && patch -p 1 -i ${tempDir}/make_patch.diff \
                 && sed -i '/source=/a nginx.patch' APKBUILD-base.in \

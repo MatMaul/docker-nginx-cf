@@ -5,6 +5,7 @@ LABEL maintainer="NGINX Docker Maintainers <docker-maint@nginx.com>"
 ENV NGINX_VERSION 1.18.0
 ENV NJS_VERSION   0.4.0
 ENV PKG_RELEASE   1
+ENV PKG_BRANCH    stable-1.18
 
 COPY . /tmp
 
@@ -46,7 +47,7 @@ RUN set -x \
                 && cd ${tempDir} \
                 && hg clone https://hg.nginx.org/pkg-oss \
                 && cd pkg-oss \
-                && hg up ${NGINX_VERSION}-${PKG_RELEASE} \
+                && hg up ${PKG_BRANCH} \
                 && cd alpine \
                 && patch -p 1 -i ${tempDir}/make_patch.diff \
                 && sed -i '/source=/a nginx.patch' APKBUILD-base.in \
